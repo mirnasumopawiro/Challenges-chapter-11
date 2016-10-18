@@ -1,5 +1,5 @@
 //
-//  4.cpp
+//  5.cpp
 //  17 oct
 //
 //  Created by Mirna Sumopawiro on 10/17/16.
@@ -18,7 +18,7 @@ struct WeatherData
     float averageTemp;
 };
 
-
+enum Months {JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER};
 
 int main ()
 {
@@ -27,7 +27,7 @@ int main ()
     int totalRainfallYear;
     float averageMonthlyRainfall;
     
-    for (int i = 0; i < MONTHS; i++)
+    for (int i = JANUARY; i < DECEMBER; i++)
     {
         cout << "Input the details for month #" << (i+1) << endl;
         cout << "Total rainfall: ";
@@ -38,7 +38,8 @@ int main ()
         cin >> details[i].lowTemp;
     }
     
-    for (int i = 0; i < MONTHS; i++)
+    cout << details[3].totalRainfall;
+    /*for (int i = 0; i < MONTHS; i++)
     {
         totalRainfallYear += details[i].totalRainfall;
     }
@@ -48,42 +49,35 @@ int main ()
     
     //Sort highest temperature
     int highestTemperature = 0;
-    int position;
     for (int i = 0; i < MONTHS; i++)
     {
-        if (details[i].highTemp > highestTemperature)
+        if (details[i].highTemp > details[i+1].highTemp)
         {
             highestTemperature = details[i].highTemp;
-            position = i;
-        }
-    }
-    cout << "The highest temperature is " << highestTemperature << " by month #" << (position+1) << endl;
-    
-    //Sort lowest temperature
-    int lowestTemperature = 200;
-    int place;
-    for (int i = 0; i < MONTHS; i++)
-    {
-        if (details[i].lowTemp < lowestTemperature)
-        {
-            lowestTemperature = details[i].lowTemp;
-            place = i;
+            details[i].highTemp = details[i+1].highTemp;
+            details[i+1].highTemp = highestTemperature;
             
         }
     }
-    cout << "The lowest temperature is " << lowestTemperature << " in month # " << (place+1) << endl;
+    cout << "The highest temperature is " << highestTemperature << " in month # "  << endl;
+    
+    //Sort lowest temperature
+    int lowestTemperature = 0;
+    for (int i = 0; i < MONTHS; i++)
+    {
+        if (details[i].lowTemp < details[i+1].lowTemp)
+        {
+            lowestTemperature = details[i].lowTemp;
+            details[i].lowTemp = details[i+1].lowTemp;
+            details[i+1].lowTemp = lowestTemperature;
+            
+        }
+    }
+    cout << "The lowest temperature is " << lowestTemperature << " in month # " << endl;
     
     int averageTemp;
     averageTemp = (highestTemperature + lowestTemperature) / 2;
-    cout << "The average temperature is " << averageTemp << endl;
+    cout << "The average temperature is " << averageTemp << endl;*/
     
     return 0;
 }
-
-
-/*The program should have an array of 12 structures to hold weather data for an entire year. When the program runs, it should ask the user to enter data for each month. (The average temperature should be calculated.) Once the data are entered for all the months, the program should calculate and display
- the average monthly rainfall
- the total rainfall for the year
- the highest and lowest temperatures for the year (and the months they occurred in)
- and the average of all the monthly average temperatures.
- Input Validation: Only accept temperatures within the range between –100 and +140 degrees Fahrenheit.*/
